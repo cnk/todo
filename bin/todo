@@ -11,31 +11,28 @@ end
 
 include GLI::App
 
-program_desc 'Describe your application here'
+program_desc 'Simple command line to do application'
 
 version Todo::VERSION
 
-desc 'Describe some switch here'
-switch [:s,:switch]
+desc 'File containing our to do items'
+default_value 'todos.txt'
+arg_name 'filename'
+flag [:f,:file]
 
-desc 'Describe some flag here'
-default_value 'the default'
-arg_name 'The name of the argument'
-flag [:f,:flagname]
-
-desc 'Describe new here'
-arg_name 'Describe arguments to new here'
+desc 'Add a new to do item to your list'
+arg_name '"My to-do item"'
 command :new do |c|
-  c.desc 'Describe a switch to new'
-  c.switch :s
-
-  c.desc 'Describe a flag to new'
-  c.default_value 'default'
-  c.flag :f
+  c.desc 'Place this item at the top of your to do list.'
+  c.switch [:f, :first]
+  
+  c.desc 'Assign priority'
+  c.default_value 1
+  c.arg_name 'priority (integer)'
+  c.flag [:p, :priority]
+  
   c.action do |global_options,options,args|
-
     # Your command logic here
-     
     # If you have any errors, just raise them
     # raise "that command made no sense"
 
@@ -43,16 +40,21 @@ command :new do |c|
   end
 end
 
-desc 'Describe list here'
-arg_name 'Describe arguments to list here'
+desc 'List your to do items'
+arg_name 'List items sorted by <sort>'
 command :list do |c|
+  c.desc 'Sort by name or priority'
+  c.default_value 'priority'
+  c.arg_name 'sort_key'
+  c.flag [:s, :sort]
+
   c.action do |global_options,options,args|
     puts "list command ran"
   end
 end
 
-desc 'Describe done here'
-arg_name 'Describe arguments to done here'
+desc 'Mark this item as done.'
+arg_name 'Number of the item you want to mark as done.'
 command :done do |c|
   c.action do |global_options,options,args|
     puts "done command ran"
