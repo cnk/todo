@@ -1,0 +1,100 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "TODO\.RB" "1" "November 2012" "" ""
+.
+.SH "NAME"
+\fBtodo\.rb\fR \- Keep track of multiple to do items
+.
+.SH "SYNOPSIS"
+\fBtodo\.rb\fR new \fIto do item\fR
+.
+.br
+\fBtodo\.rb\fR list \fBtodo\.rb\fR done \fIitem_number\fR
+.
+.br
+.
+.SH "DESCRIPTION"
+\fBtodo\.rb\fR is a suite of command line tools for keeping track of to do items\. You may add new items, marke them as done, or display your entire list\.
+.
+.SH "OPTIONS"
+.
+.TP
+new
+Add the \fIto do item\fR to your list\.
+.
+.TP
+list
+Show items on your list\.
+.
+.TP
+done
+Mark \fIitem_number\fR on your list as done\.
+.
+.SH "EXAMPLES"
+Add a new item to the end of your list
+.
+.IP "" 4
+.
+.nf
+
+$ todo new "Rake leaves"
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Add a new item to an alternative list stored in the file work\.txt
+.
+.IP "" 4
+.
+.nf
+
+$ todo \-f /home/davec/work\.txt new "Refactor database"
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Create a new item and put it on the top of you list
+.
+.IP "" 4
+.
+.nf
+
+$ todo new "Do design review" \-f
+.
+.fi
+.
+.IP "" 0
+.
+.P
+List items on your default to do list \- sorted by name
+.
+.IP "" 4
+.
+.nf
+
+$ todo list \-s name
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Mark the third item on you list as done
+.
+.IP "" 4
+.
+.nf
+
+$ todo done 3
+.
+.fi
+.
+.IP "" 0
+.
+.SH "AUTHOR"
+Cynthia Kiser \fIcnk@cynthiakiser\.com\fR

@@ -1,0 +1,48 @@
+todo.rb(1) -- Keep track of multiple to do items
+================================================
+
+## SYNOPSIS
+
+`todo.rb` new <to do item><br>
+`todo.rb` list
+`todo.rb` done <item_number><br>
+
+## DESCRIPTION
+
+**todo.rb** is a suite of command line tools for keeping track of to
+do items. You may add new items, marke them as done, or display your
+entire list. 
+
+## OPTIONS
+
+  * new:
+    Add the <to do item> to your list.
+
+  * list:
+    Show items on your list.
+  
+  * done:
+    Mark <item_number> on your list as done. 
+
+## EXAMPLES
+
+Add a new item to the end of your list
+    $ todo new "Rake leaves"
+
+Add a new item to an alternative list stored in the file work.txt
+    $ todo -f /home/davec/work.txt new "Refactor database" 
+
+Create a new item and put it on the top of you list
+    $ todo new "Do design review" -f 
+
+List items on your default to do list - sorted by name
+    $ todo list -s name
+
+Mark the third item on you list as done
+    $ todo done 3
+
+
+## AUTHOR
+
+Cynthia Kiser <cnk@cynthiakiser.com>
+
