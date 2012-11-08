@@ -44,16 +44,25 @@ end
 
 desc 'List your to do items'
 command :list do |c|
-  c.desc 'Sort by name or priority'
+  c.desc 'Sort by name or priority - not implemented yet'
   c.default_value 'priority'
   c.arg_name 'sort_key'
   c.flag [:s, :sort]
+
+  c.desc 'Format of the output'
+  c.arg_name 'csv|pretty'
+  c.default_value 'pretty'
+  c.flag :format
 
   c.action do |global_options,options,args|
     File.open(global_options[:f], 'r') do |file|
       counter = 1
       file.readlines.each do |line|
-        display_todo(line, counter)
+        if options[:format] == 'pretty'
+          display_todo(line, counter)
+        else
+          machine_readable_todo(line, counter)
+        end
         counter += 1
       end
     end
@@ -118,6 +127,12 @@ def display_todo(line, counter)
   unless completed.nil?
       printf ("      Completed: #{completed}\n")
   end
+end
+
+def machine_readable_todo(line, counter)
+  name, created, completed = read_todo(line)
+  completed_flag = completed ? "C" : "U"
+  printf("%d,%s,%s,%s,%s\n",counter,name,completed_flag,created,completed)
 end
 
 def read_todo(line)
