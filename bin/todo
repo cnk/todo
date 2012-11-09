@@ -59,12 +59,14 @@ command [:list, :ls] do |c|
   c.arg_name 'sort_key'
   c.flag [:s, :sort]
 
-  c.desc 'Format of the output'
+  c.desc 'Format of the output. If not specified, defaults to pretty unless the output is piped to another program.'
   c.arg_name 'csv|pretty'
-  c.default_value 'pretty'
   c.flag :format
 
   c.action do |global_options,options,args|
+    if options[:format].nil?
+      options[:format] = STDOUT.tty? ? 'pretty' : 'csv'
+    end
     File.open(global_options[:f], 'r') do |file|
       counter = 1
       file.readlines.each do |line|
