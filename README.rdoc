@@ -1,6 +1,62 @@
-= todo
+= todo - Command-line to-do lists
 
-Describe your project here
+Author:: Cynthia Kiser (mailto:cnk@ugcs.caltech.edu)
+Copyright:: Copyright (c) 2012 by Cynthia Kiser
 
-:include:todo.rdoc
+This is a version of the to do application described in "Building
+Awesome Command-Line Applications in Ruby" by David Copeland
+http://pragprog.com/book/dccar/build-awesome-command-line-applications-in-ruby
+
+== Install
+
+Install: 
+  
+  gem install todo
+
+== Use 
+
+To add a new item to your to do list: 
+
+  todo new "Something I need to do"
+
+To see your current to do list: 
+
+  todo list
+
+To mark an item as done: 
+
+  todo done 3
+
+For more help:
+
+  todo -h
+  todo new -h
+  gem man todo 
+
+== Contributing to to do
+
+First, install bundler:
+
+  gem install bundler
+
+Get the development dependencies
+
+  bundle install
+
+Most of the code is in 'bin/todo'
+
+== Notes
+
+Most of the book is exellent - though it could use a little more
+detail in the chapter on generating Rdoc documentation and packaging
+it into a ruby gem. The GLI scaffold created this README.rdoc but also
+created a todo.rdoc which was included into this file. But I could not
+find any explanation of why the documentation was split across two
+files. I am also wondering if I should generate the documentation and
+commit the doc directory into my git repository. I think the gem
+install process will expect to generate the docs itself, I suspect I
+don't need to commit the processed docs - though it will likely do no
+harm since the todo.gemspec only mentions the rdoc files and compile
+options but not the processed files in the doc directory.
+
 

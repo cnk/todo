@@ -3,11 +3,11 @@ require File.join([File.dirname(__FILE__),'lib','todo','version.rb'])
 spec = Gem::Specification.new do |s| 
   s.name = 'todo'
   s.version = Todo::VERSION
-  s.author = 'Your Name Here'
-  s.email = 'your@email.address.com'
-  s.homepage = 'http://your.website.com'
+  s.author = 'Cynthia Kiser'
+  s.email = 'cnk@caltech.edu'
+  s.homepage = 'http://blog.cynthiakiser.com'
   s.platform = Gem::Platform::RUBY
-  s.summary = 'A description of your project'
+  s.summary = 'Command-line to do application from Building Awesome Command-Line Applications in Ruby'
 # Add your other files here if you make them
   s.files = %w(
 bin/todo
