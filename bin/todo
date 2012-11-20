@@ -16,7 +16,7 @@ program_desc 'Simple command line to do application'
 version Todo::VERSION
 
 desc 'File containing our to do items'
-default_value 'todos.txt'
+default_value File.join(ENV['HOME'],'todo.txt')
 arg_name 'filename'
 flag [:f,:file]
 

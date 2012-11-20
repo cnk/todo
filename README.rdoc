@@ -33,7 +33,7 @@ For more help:
   todo new -h
   gem man todo 
 
-== Contributing to to do
+== Contributing 
 
 First, install bundler:
 
