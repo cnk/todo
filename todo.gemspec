@@ -8,6 +8,7 @@ spec = Gem::Specification.new do |s|
   s.homepage = 'http://blog.cynthiakiser.com'
   s.platform = Gem::Platform::RUBY
   s.summary = 'Command-line to do application from Building Awesome Command-Line Applications in Ruby'
+  s.description = 'Command line suite to create, list, and mark as done to do items in one or more to do lists.'
 # Add your other files here if you make them
   s.files = %w(
 bin/todo
@@ -16,7 +17,7 @@ lib/todo.rb
   )
   s.require_paths << 'lib'
   s.has_rdoc = true
-  s.extra_rdoc_files = ['README.rdoc','todo.rdoc']
+  s.extra_rdoc_files = ['README.rdoc']
   s.rdoc_options << '--title' << 'todo' << '--main' << 'README.rdoc' << '-ri'
   s.bindir = 'bin'
   s.executables << 'todo'
