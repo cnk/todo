@@ -7,7 +7,7 @@ Before do
   # Using "announce" causes massive warnings on 1.9.2
   @puts = true
   
-# Set the RUBYLIB var so we can access todo's lib directory even if we are not running todo from a gem
+  # Set the RUBYLIB var so we can access todo's lib directory even if we are not running todo from a gem
   @original_rubylib = ENV['RUBYLIB']
   ENV['RUBYLIB'] = LIB_DIR + File::PATH_SEPARATOR + ENV['RUBYLIB'].to_s
 

@@ -19,6 +19,9 @@ describe Todo::Task do
   end
 
   it "can be read from a file" do
-    skip('need to mock file system')
+    todo_file =  File.expand_path(File.dirname(__FILE__) + '/assets/todo.txt')
+    tasks = Todo::Task.from_file(todo_file)
+    tasks.kind_of?(Array).must_equal true
+    tasks[0].kind_of?(Todo::Task).must_equal true
   end
 end
