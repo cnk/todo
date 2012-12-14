@@ -7,6 +7,7 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
+    ansi (1.4.3)
     aruba (0.5.0)
       childprocess (= 0.2.3)
       cucumber (>= 1.1.1)
@@ -25,7 +26,17 @@ GEM
     gherkin (2.11.5)
       json (>= 1.4.6)
     gli (2.4.1)
+    hashie (1.2.0)
     json (1.7.5)
+    minitest (4.3.3)
+    minitest-reporters (0.13.1)
+      ansi
+      builder
+      minitest (>= 2.12, < 5.0)
+      powerbar
+    powerbar (1.0.11)
+      ansi (~> 1.4.0)
+      hashie (>= 1.1.0)
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
@@ -37,6 +48,7 @@ PLATFORMS
 
 DEPENDENCIES
   aruba
+  minitest-reporters
   rake
   rdoc
   todo!

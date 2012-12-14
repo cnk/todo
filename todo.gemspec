@@ -12,6 +12,7 @@ spec = Gem::Specification.new do |s|
 # Add your other files here if you make them
   s.files = %w(
 bin/todo
+lib/todo/todo.rb
 lib/todo/version.rb
 lib/todo.rb
   )
@@ -24,5 +25,6 @@ lib/todo.rb
   s.add_development_dependency('rake')
   s.add_development_dependency('rdoc')
   s.add_development_dependency('aruba')
+  s.add_development_dependency('minitest-reporters')
   s.add_runtime_dependency('gli','2.4.1')
 end
