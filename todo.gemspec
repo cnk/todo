@@ -26,5 +26,6 @@ lib/todo.rb
   s.add_development_dependency('rdoc')
   s.add_development_dependency('aruba')
   s.add_development_dependency('minitest-reporters')
+  s.add_development_dependency('mocha')
   s.add_runtime_dependency('gli','2.4.1')
 end
