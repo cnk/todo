@@ -13,7 +13,16 @@ module Todo
       !completed_date.nil?
     end
 
-    def self.from_file(filename)
+    def completed
+      @completed_date = Time.now
+      self
+    end
+
+    def write_to_file(file)
+      file.puts("#{name},#{created_date},#{completed_date}")
+    end
+
+    def self.create_from_file(filename)
       tasks = [] 
       File.open(filename, 'r') do |file|
         file.readlines.each do |line|
@@ -23,5 +32,6 @@ module Todo
       end
       tasks
     end
+
   end
 end

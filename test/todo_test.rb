@@ -2,10 +2,11 @@ require 'minitest/autorun'
 # Let's have pretty test reports: https://github.com/CapnKernul/minitest-reporters
 require 'minitest/reporters'
 MiniTest::Reporters.use! MiniTest::Reporters::SpecReporter.new
-require_relative '../lib/todo/todo'
+$LOAD_PATH.push File.expand_path("../../lib", __FILE__)
+require 'todo'
 include Todo
 
-# Some test setup shanaegens
+# Some test setup
 require 'mocha/setup'
 require 'stringio'
 
@@ -17,8 +18,8 @@ describe "Todo actions" do
     end
 
     it "should generate machine-readable output if asked" do
-      output = list_tasks("file.txt", 'csv')
-      output.must_equal "1,Completed task,C,2012-12-12 18:10:00 -0800,2012-12-12 22:50:00 -0800\n2,Uncompleted task,U,2012-12-12 18:12:00 -0800,"
+      exp = "1,Completed task,C,2012-12-12 18:10:00 -0800,2012-12-12 22:50:00 -0800\n2,Uncompleted task,U,2012-12-12 18:12:00 -0800,"
+      lambda {list_tasks("file.txt", Todo::Format::CSV.new)}.must_output exp
     end
 
     def teardown 
@@ -33,7 +34,7 @@ describe "Todo actions" do
   describe "new" do
     it " should raise an error when there are no tasks" do
       File.stubs(:open).yields(StringIO.new)
-      err = lambda {Todo.new_task('problems.txt', [])}.must_raise RuntimeError
+      err = lambda {new_task('problems.txt', [])}.must_raise RuntimeError
       err.message.must_match "You must provide tasks on the command-line or from standard input"
     end
     

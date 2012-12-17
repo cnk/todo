@@ -45,6 +45,15 @@ Get the development dependencies
 
 Most of the code is in 'bin/todo'. Once I have built a test suite it
 should be easier to see what I intend. In the mean time, the man page
-contains several examples of how this is intended to work.
+contains several examples of how this is intended to work. 
 
+To generate the man pages using gem-man (and ronn) type:
+
+  ronn man/todo.1.ronn
+
+In theory you can view the generated man page like this: 
+
+  gem man todo
+
+But it is probably easier to view the html version at man/todo.1.html.
 

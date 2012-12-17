@@ -1,5 +1,5 @@
 # Ensure we require the local version and not one we might have installed already
-require File.join([File.dirname(__FILE__),'lib','todo','version.rb'])
+require File.join([File.dirname(__FILE__),'lib', 'todo','version.rb'])
 spec = Gem::Specification.new do |s| 
   s.name = 'todo'
   s.version = Todo::VERSION
@@ -12,9 +12,12 @@ spec = Gem::Specification.new do |s|
 # Add your other files here if you make them
   s.files = %w(
 bin/todo
-lib/todo/todo.rb
-lib/todo/version.rb
 lib/todo.rb
+lib/todo/version.rb
+lib/todo/todo.rb
+lib/todo/task.rb
+lib/todo/format/csv.rb
+lib/todo/format/pretty.rb
   )
   s.require_paths << 'lib'
   s.has_rdoc = true

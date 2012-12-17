@@ -51,14 +51,16 @@ command [:list, :ls] do |c|
   c.flag [:s, :sort]
 
   c.desc 'Format of the output. If not specified, defaults to pretty unless the output is piped to another program.'
-  c.arg_name 'csv|pretty'
+  output_formats = { csv: Todo::Format::CSV.new, pretty: Todo::Format::Pretty.new }
+  c.arg_name output_formats.keys.join('|')
   c.flag :format
 
   c.action do |global_options,options,args|
     if options[:format].nil?
       options[:format] = STDOUT.tty? ? 'pretty' : 'csv'
     end
-    list_tasks(global_options[:file], options[:format])
+    formatter = output_formats[options[:format].to_sym]
+    list_tasks(global_options[:file], formatter)
   end
 end
 
@@ -69,6 +71,7 @@ command :done do |c|
     completed_item = args.shift.to_i
     infile = global_options[:file]
     outfile = global_options[:file]+ '.NEW'
+
     complete_task(infile, outfile, completed_item)
     FileUtils.mv(global_options[:f]+ '.NEW', global_options[:f])
   end
@@ -76,27 +79,20 @@ end
 
 pre do |global,command,options,args|
   # Pre logic here
-  # Return true to proceed; false to abourt and not call the
-  # chosen command
-  # Use skips_pre before a command to skip this block
-  # on that command only
+  # Return true to proceed; false to abort and not call the chosen command
+  # Use skips_pre before a command to skip this block on that command only
   true
 end
 
 post do |global,command,options,args|
   # Post logic here
-  # Use skips_post before a command to skip this
-  # block on that command only
+  # Use skips_post before a command to skip this block on that command only
 end
 
 on_error do |exception|
   # Error logic here
   # return false to skip default error handling
   true
-end
-
-def write_todo(file, task, created=Time.now, completed='')
-  file.puts("#{task},#{created},#{completed}")
 end
 
 exit run(ARGV)
