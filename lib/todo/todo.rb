@@ -16,12 +16,12 @@ module Todo
     end
   end
 
-  def list_tasks(filename, formatter)
+  def list_tasks(filename, formatter, destination=STDOUT)
     # begin
       File.open(filename, 'r') do |file|
         counter = 1
         Task.create_from_file(file).each do |task|
-          formatter.format(counter, task)
+          formatter.format(counter, task, destination)
           counter += 1
         end
       end

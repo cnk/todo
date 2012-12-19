@@ -13,17 +13,26 @@ require 'stringio'
 describe "Todo actions" do
   describe "list" do
     before do
-      @fake_file = StringIO.new("Completed task,2012-12-12 18:10:00 -0800,2012-12-12 22:50:00 -0800\nUncompleted task,2012-12-12 18:12:00 -0800,")
-      File.stubs(:open).yields(@fake_file)
+      @output = StringIO.new
+      @file = File.expand_path(File.dirname(__FILE__) + '/assets/todo.txt')
     end
 
     it "should generate machine-readable output if asked" do
-      exp = "1,Completed task,C,2012-12-12 18:10:00 -0800,2012-12-12 22:50:00 -0800\n2,Uncompleted task,U,2012-12-12 18:12:00 -0800,"
-      lambda {list_tasks("file.txt", Todo::Format::CSV.new)}.must_output exp
+      expected = "1,Finished Task 1,C,2012-12-12 18:10:25 -0800,2012-12-12 22:52:32 -0800\n2,Unfinished Task 1,U,2012-12-12 18:25:06 -0800,\n"
+      list_tasks(@file, Todo::Format::CSV.new, @output)
+      assert_equal expected, @output.string
     end
 
-    def teardown 
-      File.unstub(:open)
+    it "should generate human-readable output if asked" do
+        expected = "  1 - Finished Task 1
+      Created:   2012-12-12 18:10:25 -0800
+      Completed: 2012-12-12 22:52:32 -0800
+  2 - Unfinished Task 1
+      Created:   2012-12-12 18:25:06 -0800
+"
+
+      list_tasks(@file, Todo::Format::Pretty.new, @output)
+      assert_equal expected, @output.string
     end
   end
 
