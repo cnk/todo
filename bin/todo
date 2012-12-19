@@ -69,11 +69,7 @@ arg_name 'item_number'
 command :done do |c|
   c.action do |global_options,options,args|
     completed_item = args.shift.to_i
-    infile = global_options[:file]
-    outfile = global_options[:file]+ '.NEW'
-
-    complete_task(infile, outfile, completed_item)
-    FileUtils.mv(global_options[:f]+ '.NEW', global_options[:f])
+    complete_task(global_options[:file], completed_item)
   end
 end
 

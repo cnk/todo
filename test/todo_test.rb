@@ -30,7 +30,6 @@ describe "Todo actions" do
   2 - Unfinished Task 1
       Created:   2012-12-12 18:25:06 -0800
 "
-
       list_tasks(@file, Todo::Format::Pretty.new, @output)
       assert_equal expected, @output.string
     end

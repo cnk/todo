@@ -17,7 +17,7 @@ module Todo
   end
 
   def list_tasks(filename, formatter, destination=STDOUT)
-    # begin
+    begin
       File.open(filename, 'r') do |file|
         counter = 1
         Task.create_from_file(file).each do |task|
@@ -25,12 +25,14 @@ module Todo
           counter += 1
         end
       end
-    # rescue SystemCallError => err
-    #   raise RuntimeError, "Couldn't open #{filename} for reading: #{err.message}"
-    # end
+    rescue SystemCallError => err
+      raise RuntimeError, "Couldn't open #{filename} for reading: #{err.message}"
+    end
   end
 
-  def complete_task(infile, outfile, completed_item)
+  def complete_task(filename, completed_item)
+    infile = filename
+    outfile = filename + '.NEW'
     begin
       File.open(infile, 'r') do |infile|
         File.open(outfile, 'w') do |outfile|
@@ -44,6 +46,7 @@ module Todo
           end
         end
       end
+    FileUtils.mv(outfile, infile)
     rescue SystemCallError => err
       raise RuntimeError, "Couldn't open #{filename} to update it: #{err.message}"
     end
