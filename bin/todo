@@ -51,7 +51,7 @@ command [:list, :ls] do |c|
   c.flag [:s, :sort]
 
   c.desc 'Format of the output. If not specified, defaults to pretty unless the output is piped to another program.'
-  output_formats = { csv: Todo::Format::CSV.new, pretty: Todo::Format::Pretty.new }
+  output_formats = { csv: Todo::Format::CSV.new, pretty: Todo::Format::Pretty.new, tabular: Todo::Format::Tabular.new }
   c.arg_name output_formats.keys.join('|')
   c.flag :format
 

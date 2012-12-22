@@ -11,6 +11,9 @@ module Todo
           destination.puts sprintf ("      Completed: #{task.completed_date}").color(color)
         end
       end
+
+      def before; end
+      def after(destination); end
     end
   end
 end

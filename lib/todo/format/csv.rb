@@ -5,6 +5,9 @@ module Todo
         completed_flag = task.completed? ? "C" : "U"
         destination.puts sprintf("%d,%s,%s,%s,%s\n",counter,task.name,completed_flag,task.created_date,task.completed_date)
       end
+
+      def before; end
+      def after(destination); end
     end
   end
 end

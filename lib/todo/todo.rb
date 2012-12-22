@@ -19,11 +19,13 @@ module Todo
   def list_tasks(filename, formatter, destination=STDOUT)
     begin
       File.open(filename, 'r') do |file|
+        formatter.before
         counter = 1
         Task.create_from_file(file).each do |task|
           formatter.format(counter, task, destination)
           counter += 1
         end
+        formatter.after(destination)
       end
     rescue SystemCallError => err
       raise RuntimeError, "Couldn't open #{filename} for reading: #{err.message}"

@@ -35,6 +35,19 @@ describe "Todo actions" do
       list_tasks(@file, Todo::Format::Pretty.new, @output)
       assert_equal expected, @output.string
     end
+
+    it "should generate tablular output if asked" do
+      delimiter = "+----+-------------------+------------+------------+"
+      expected = "#{delimiter}
+| Id | Name              | Created    | Completed  |
+#{delimiter}
+| 1  | Finished Task 1   | 2012-12-12 | 2012-12-12 |
+| 2  | Unfinished Task 1 | 2012-12-12 |            |
+#{delimiter}
+"
+      list_tasks(@file, Todo::Format::Tabular.new, @output)
+      assert_equal expected, @output.string
+    end
   end
 
   describe "done" do

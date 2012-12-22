@@ -18,6 +18,7 @@ lib/todo/todo.rb
 lib/todo/task.rb
 lib/todo/format/csv.rb
 lib/todo/format/pretty.rb
+lib/todo/format/tabular.rb
   )
   s.require_paths << 'lib'
   s.has_rdoc = true
@@ -32,4 +33,5 @@ lib/todo/format/pretty.rb
   s.add_development_dependency('mocha')
   s.add_runtime_dependency('gli','2.4.1')
   s.add_runtime_dependency('rainbow')
+  s.add_runtime_dependency('terminal-table')
 end
