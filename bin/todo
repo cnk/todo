@@ -55,11 +55,21 @@ command [:list, :ls] do |c|
   c.arg_name output_formats.keys.join('|')
   c.flag :format
 
+  c.desc "Don't use ANSI color codes"
+  c.switch 'bland'.to_sym
+
   c.action do |global_options,options,args|
+    if options[:'bland']
+      Sickill::Rainbow.enabled = false
+    end
     if options[:format].nil?
       options[:format] = STDOUT.tty? ? 'pretty' : 'csv'
     end
-    formatter = output_formats[options[:format].to_sym]
+    if output_formats.keys.include? options[:format].to_sym
+      formatter = output_formats[options[:format].to_sym]
+    else
+      raise RuntimeError, "Unrecognized format #{options[:format]}; valid formats are: #{output_formats.keys}"
+    end
     list_tasks(global_options[:file], formatter)
   end
 end

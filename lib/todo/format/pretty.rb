@@ -1,11 +1,14 @@
+require 'rainbow'
+
 module Todo
   module Format
     class Pretty
       def format(counter, task, destination)
-        destination.puts sprintf("%3d - %s\n", counter,task.name) 
-        destination.puts sprintf("      Created:   #{task.created_date}\n")
+        color = task.completed? ? :green : :default
+        destination.puts sprintf("%3d - %s", counter,task.name.bright).color(color)
+        destination.puts sprintf("      Created:   #{task.created_date}").color(color)
         if task.completed?
-          destination.puts sprintf ("      Completed: #{task.completed_date}\n")
+          destination.puts sprintf ("      Completed: #{task.completed_date}").color(color)
         end
       end
     end

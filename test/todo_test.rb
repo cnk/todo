@@ -30,6 +30,8 @@ describe "Todo actions" do
   2 - Unfinished Task 1
       Created:   2012-12-12 18:25:06 -0800
 "
+      # Don't use ANSI colors in this test
+      Sickill::Rainbow.enabled = false
       list_tasks(@file, Todo::Format::Pretty.new, @output)
       assert_equal expected, @output.string
     end
